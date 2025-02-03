@@ -4,6 +4,11 @@ target/
 **/*.rs.bk
 *.pdb
 
+# IDE and code editor
+.idea/
+.vscode/
+*.code-workspace
+
 # macOS
 .DS_Store
 .AppleDouble
