@@ -1,3 +1,4 @@
+mod base;
 mod base_conversion;
 
 use clap::{Arg, ArgGroup, Command};
@@ -10,16 +11,8 @@ fn main() {
         .subcommand(
             Command::new("bc")
                 .about("Mathematical base conversion.")
-                .arg(
-                    Arg::new("binary")
-                        .long("bin")
-                        .help("Binary number input."),
-                )
-                .arg(
-                    Arg::new("octal")
-                        .long("oct")
-                        .help("Octal number input."),
-                )
+                .arg(Arg::new("binary").long("bin").help("Binary number input."))
+                .arg(Arg::new("octal").long("oct").help("Octal number input."))
                 .arg(
                     Arg::new("decimal")
                         .long("dec")
@@ -33,6 +26,28 @@ fn main() {
                 .group(
                     ArgGroup::new("base_conversion_options")
                         .args(["binary", "octal", "decimal", "hexadecimal"])
+                        .required(true)
+                        .multiple(false),
+                ),
+        )
+        .subcommand(
+            Command::new("base")
+                .about("Base encoding and decoding.")
+                .arg(
+                    Arg::new("encode")
+                        .short('e')
+                        .long("encode")
+                        .help("Encode the entered text."),
+                )
+                .arg(
+                    Arg::new("decode")
+                        .short('d')
+                        .long("decode")
+                        .help("Decode the entered text."),
+                )
+                .group(
+                    ArgGroup::new("base_encoding_options")
+                        .args(["encode", "decode"])
                         .required(true)
                         .multiple(false),
                 ),
@@ -94,6 +109,21 @@ fn main() {
                 _ => panic!("Invalid base conversion option"),
             };
         }
+        Some(("base", subcommand_base)) => match () {
+            _ if subcommand_base.contains_id("encode") => {
+                let result = base::text::encode::text_encode(
+                    subcommand_base.get_one::<String>("encode").unwrap(),
+                );
+                println!("Base16: {} \nBase64: {}", result[0], result[1]);
+            }
+            _ if subcommand_base.contains_id("decode") => {
+                let result = base::text::decode::text_decode(
+                    subcommand_base.get_one::<String>("decode").unwrap(),
+                );
+                println!("Base16: {} \nBase64: {}", result[0], result[1]);
+            }
+            _ => panic!("Invalid option"),
+        },
         _ => {}
     }
 }
