@@ -10,3 +10,4 @@ readme = "README.md"
 
 [dependencies]
 clap = "4.5.26"
+md5 = "0.7.0"

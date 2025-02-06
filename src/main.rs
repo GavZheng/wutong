@@ -1,5 +1,6 @@
 mod base;
 mod base_conversion;
+mod md5;
 
 use clap::{Arg, ArgGroup, Command};
 
@@ -51,6 +52,16 @@ fn main() {
                         .required(true)
                         .multiple(false),
                 ),
+        )
+        .subcommand(
+            Command::new("md5")
+                .about("MD5 hashing.")
+                .arg(
+                    Arg::new("text")
+                        .short('t')
+                        .long("text")
+                        .help("Input text to be hashed."),
+                )
         )
         .get_matches();
 
@@ -124,6 +135,10 @@ fn main() {
             }
             _ => panic!("Invalid option"),
         },
+        Some(("md5", subcommand_md5)) => {
+            let result = md5::text::md5_text(subcommand_md5.get_one::<String>("text").unwrap());
+            println!("{}", result);
+        }
         _ => {}
     }
 }
