@@ -1,2 +1,2 @@
-pub mod text;
 mod test;
+pub mod text;
