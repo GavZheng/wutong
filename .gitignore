@@ -1,0 +1,26 @@
+# Rust
+debug/
+target/
+**/*.rs.bk
+*.pdb
+
+# IDE and code editor
+.idea/
+.vscode/
+*.code-workspace
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
