@@ -25,7 +25,7 @@ In our daily project development, we frequently encounter situations where we ne
 
 ## How to Install Wutong
 > [!NOTE]  
-> During the beta phase, Wutong does not provide installation methods. If you wish to experience it, please compile it yourself. Upon the release of the official version, Wutong will provide installation methods.
+> During the test phase, Wutong does not provide installation methods. If you wish to experience it, please compile it yourself. Upon the release of the official version, Wutong will provide installation methods.
 
 ---
 
@@ -33,14 +33,13 @@ In our daily project development, we frequently encounter situations where we ne
 You can obtain detailed information by typing `wutong --help` in the command line.  
 The general functions of Wutong are listed below (v0.1.0-alpha):
 
-| Function | Description                                                                                            |
-|----------|--------------------------------------------------------------------------------------------------------|
-| base     | Encode input strings in base32 or base64                                                               |
-| bc       | Convert input numbers to binary, octal, decimal, hexadecimal, or storage size units (KB, MB, GB, etc.) |
-| color    | Convert between RGB and Hex colors                                                                     |
-| md5      | Hash input strings using MD5                                                                           |
-| diff     | Compare text differences                                                                               |
-| char     | Convert string encodings                                                                               |
+| Function | Description                                                  |
+|----------|--------------------------------------------------------------|
+| base     | Encode input strings in base32 or base64                     |
+| bc       | Convert input numbers to binary, octal, decimal, hexadecimal |
+| color    | Convert between RGB and Hex colors                           |
+| md5      | Hash input strings using MD5                                 |
+| charcode | Convert string encodings                                     |
 
 ---
 
