@@ -1,6 +1,7 @@
 mod base;
 mod base_conversion;
 mod charcode;
+mod color;
 mod md5;
 
 use clap::{Arg, ArgGroup, Command};
@@ -65,7 +66,12 @@ fn main() {
         .subcommand(
             Command::new("charcode")
                 .about("Character code conversion.")
-                .arg(Arg::new("input").help("输入参数").required(true).index(1)),
+                .arg(Arg::new("input").help("Parameters entered.").required(true).index(1)),
+        )
+        .subcommand(
+            Command::new("color")
+                .about("Color conversion.")
+                .arg(Arg::new("input").help("Parameters entered.").required(true).index(1)),
         )
         .get_matches();
 
@@ -148,6 +154,10 @@ fn main() {
                 subcommand_charcode.get_one::<String>("input").unwrap(),
             );
             println!("ASCII: {} \nUnicode: {}", result[0], result[1]);
+        }
+        Some(("color", subcommand_color)) => {
+            let result = color::conversion::color_conversion(subcommand_color.get_one::<String>("input").unwrap());
+            println!("RGB: {}\nHex: {}", result[0], result[1]);
         }
         _ => {}
     }
