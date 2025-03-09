@@ -66,84 +66,130 @@ fn main() {
         .subcommand(
             Command::new("charcode")
                 .about("Character code conversion.")
-                .arg(Arg::new("input").help("Parameters entered.").required(true).index(1)),
+                .arg(
+                    Arg::new("input")
+                        .help("Parameters entered.")
+                        .required(true)
+                        .index(1),
+                ),
         )
         .subcommand(
-            Command::new("color")
-                .about("Color conversion.")
-                .arg(Arg::new("input").help("Parameters entered.").required(true).index(1)),
+            Command::new("color").about("Color conversion.").arg(
+                Arg::new("input")
+                    .help("Parameters entered.")
+                    .required(true)
+                    .index(1),
+            ),
         )
         .get_matches();
 
     match matches.subcommand() {
-        Some(("bc", subcommand_bc)) => {
-            match () {
-                _ if subcommand_bc.contains_id("binary") => {
-                    let result = base_conversion::math::binary(
-                        subcommand_bc.get_one::<String>("binary").unwrap(),
-                    );
-                    println!(
-                        "Binary:      {} \nOctal:       {} \nDecimal:     {} \nHexadecimal: {}",
-                        subcommand_bc.get_one::<String>("binary").unwrap(), // Binary
-                        result[0],                                          // Octal
-                        result[1],                                          // Decimal
-                        result[2]                                           // Hexadecimal
-                    )
-                }
-                _ if subcommand_bc.contains_id("octal") => {
-                    let result = base_conversion::math::octal(
-                        subcommand_bc.get_one::<String>("octal").unwrap(),
-                    );
+        Some(("bc", subcommand_bc)) => match () {
+            _ if subcommand_bc.contains_id("binary") => {
+                let input = subcommand_bc.get_one::<String>("binary").unwrap();
+                let result = base_conversion::math::binary(input);
 
-                    println!(
-                        "Binary:      {}\nOctal:       {}\nDecimal:     {} \nHexadecimal: {}",
-                        result[0],                                         // Binary
-                        subcommand_bc.get_one::<String>("octal").unwrap(), // Octal
-                        result[1],                                         // Decimal
-                        result[2]                                          // Hexadecimal
-                    );
+                match result {
+                    Ok(converted) => {
+                        println!(
+                            "Binary:      {}\nOctal:       {}\nDecimal:     {}\nHexadecimal: {}",
+                            input, converted[0], converted[1], converted[2]
+                        );
+                    }
+                    Err(e) => {
+                        eprintln!("Error converting binary: {}", e);
+                        std::process::exit(1);
+                    }
                 }
-                _ if subcommand_bc.contains_id("decimal") => {
-                    let result = base_conversion::math::decimal(
-                        subcommand_bc.get_one::<String>("decimal").unwrap(),
-                    );
-                    println!(
-                        "Binary:      {}\nOctal:       {}\nDecimal:     {}\nHexadecimal: {}",
-                        result[0],                                           // Binary
-                        result[1],                                           // Octal
-                        subcommand_bc.get_one::<String>("decimal").unwrap(), // Decimal
-                        result[2]                                            // Hexadecimal
-                    );
+            }
+            _ if subcommand_bc.contains_id("octal") => {
+                let input = subcommand_bc.get_one::<String>("octal").unwrap();
+                let result = base_conversion::math::octal(input);
+
+                match result {
+                    Ok(converted) => {
+                        println!(
+                            "Binary:      {}\nOctal:       {}\nDecimal:     {}\nHexadecimal: {}",
+                            converted[0], input, converted[1], converted[2]
+                        );
+                    }
+                    Err(e) => {
+                        eprintln!("Error converting octal: {}", e);
+                        std::process::exit(1);
+                    }
                 }
-                _ if subcommand_bc.contains_id("hexadecimal") => {
-                    let result = base_conversion::math::hexadecimal(
-                        subcommand_bc.get_one::<String>("hexadecimal").unwrap(),
-                    );
-                    println!(
-                        "Binary:      {}\nOctal:       {}\nDecimal:     {}\nHexadecimal: {}",
-                        result[0],                                               // Binary
-                        result[1],                                               // Octal
-                        result[2],                                               // Decimal
-                        subcommand_bc.get_one::<String>("hexadecimal").unwrap()  // Hexadecimal
-                    )
+            }
+            _ if subcommand_bc.contains_id("decimal") => {
+                let input = subcommand_bc.get_one::<String>("decimal").unwrap();
+                let result = base_conversion::math::decimal(input);
+
+                match result {
+                    Ok(converted) => {
+                        println!(
+                            "Binary:      {}\nOctal:       {}\nDecimal:     {}\nHexadecimal: {}",
+                            converted[0], converted[1], input, converted[2]
+                        );
+                    }
+                    Err(e) => {
+                        eprintln!("Error converting decimal: {}", e);
+                        std::process::exit(1);
+                    }
                 }
-                _ => panic!("Invalid base conversion option"),
-            };
-        }
+            }
+            _ if subcommand_bc.contains_id("hexadecimal") => {
+                let input = subcommand_bc.get_one::<String>("hexadecimal").unwrap();
+                let result = base_conversion::math::hexadecimal(input);
+
+                match result {
+                    Ok(converted) => {
+                        println!(
+                            "Binary:      {}\nOctal:       {}\nDecimal:     {}\nHexadecimal: {}",
+                            converted[0], converted[1], converted[2], input
+                        );
+                    }
+                    Err(e) => {
+                        eprintln!("Error converting hexadecimal: {}", e);
+                        std::process::exit(1);
+                    }
+                }
+            }
+            _ => panic!("Invalid base conversion option"),
+        },
         Some(("base", subcommand_base)) => match () {
             _ if subcommand_base.contains_id("encode") => {
-                let result = base::text::encode::text_encode(
-                    subcommand_base.get_one::<String>("encode").unwrap(),
-                );
-                println!("Base16: {} \nBase64: {}", result[0], result[1]);
+                let input = subcommand_base.get_one::<String>("encode").unwrap();
+                let result = base::text::encode::text_encode(input);
+
+                match result {
+                    Ok(converted) => println!("Base16: {}\nBase64: {}", converted[0], converted[1]),
+                    Err(e) => {
+                        eprintln!("Error encoding: {}", e);
+                        std::process::exit(1);
+                    }
+                }
             }
             _ if subcommand_base.contains_id("decode") => {
-                let result = base::text::decode::text_decode(
-                    subcommand_base.get_one::<String>("decode").unwrap(),
-                );
-                println!("Base16: {} \nBase64: {}", result[0], result[1]);
+                let input = subcommand_base.get_one::<String>("decode").unwrap();
+                let result = base::text::decode::text_decode(input);
+                match result {
+                    [Ok(converted_base16), Ok(converted_base64)] => {
+                        println!("Base16: {}\nBase64: {}", converted_base16, converted_base64);
+                    }
+                    [Err(error), Ok(converted)] => {
+                        eprintln!("Base16 decode error: {}", error);
+                        println!("Base64: {}", converted);
+                    }
+                    [Ok(converted), Err(error)] => {
+                        println!("Base16: {}", converted);
+                        eprintln!("Base64 decode error: {}", error);
+                    }
+                    [Err(error_base16), Err(error_base64)] => {
+                        eprintln!("Base16 decode error: {}", error_base16);
+                        eprintln!("Base64 decode error: {}", error_base64);
+                    }
+                }
             }
-            _ => panic!("Invalid option"),
+            _ => panic!("Invalid base conversion option"),
         },
         Some(("md5", subcommand_md5)) => {
             let result = md5::text::md5_text(subcommand_md5.get_one::<String>("text").unwrap());
@@ -153,11 +199,19 @@ fn main() {
             let result = charcode::ascii_unicode::ascii_unicode(
                 subcommand_charcode.get_one::<String>("input").unwrap(),
             );
-            println!("ASCII: {} \nUnicode: {}", result[0], result[1]);
+            match result {
+                Ok(result) => println!("ASCII: {}\nUnicode: {}", result[0], result[1]),
+                Err(error) => println!("{}", error),
+            }
         }
         Some(("color", subcommand_color)) => {
-            let result = color::conversion::color_conversion(subcommand_color.get_one::<String>("input").unwrap());
-            println!("RGB: {}\nHex: {}", result[0], result[1]);
+            let result = color::conversion::color_conversion(
+                subcommand_color.get_one::<String>("input").unwrap(),
+            );
+            match result {
+                Ok(result) => println!("RGB: {}\nHex: {}", result.0, result.1),
+                Err(error) => println!("{}", error),
+            }
         }
         _ => {}
     }
