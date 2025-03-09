@@ -26,12 +26,13 @@ In our daily project development, we frequently encounter situations where we ne
 ## How to Install Wutong
 > [!NOTE]  
 > During the test phase, Wutong does not provide installation methods. If you wish to experience it, please compile it yourself. Upon the release of the official version, Wutong will provide installation methods.
+> Version 0.1.0 we will launch Wutong at HomeBrew
 
 ---
 
 ## How to Use Wutong
 You can obtain detailed information by typing `wutong --help` in the command line.  
-The general functions of Wutong are listed below (v0.1.0-alpha):
+The general functions of Wutong are listed below (v0.1.0-beta):
 
 | Function | Description                                                  |
 |----------|--------------------------------------------------------------|
