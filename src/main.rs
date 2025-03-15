@@ -5,10 +5,11 @@ mod color;
 mod md5;
 
 use clap::{Arg, ArgGroup, Command};
+use colored::*;
 
 fn main() {
     let matches = Command::new("Wutong")
-        .version("0.1.0-alpha")
+        .version("0.1.0")
         .about("Wutong - A Swiss Army Knife of Developers.🌳")
         .author("Gavin Zheng<gav.zheng@outlook.com>")
         .subcommand(
@@ -96,8 +97,8 @@ fn main() {
                             input, converted[0], converted[1], converted[2]
                         );
                     }
-                    Err(e) => {
-                        eprintln!("Error converting binary: {}", e);
+                    Err(error) => {
+                        eprintln!("{}: {}", "Error converting binary".red(), error);
                         std::process::exit(1);
                     }
                 }
@@ -113,8 +114,8 @@ fn main() {
                             converted[0], input, converted[1], converted[2]
                         );
                     }
-                    Err(e) => {
-                        eprintln!("Error converting octal: {}", e);
+                    Err(error) => {
+                        eprintln!("{}: {}", "Error converting octal".red(), error);
                         std::process::exit(1);
                     }
                 }
@@ -130,8 +131,8 @@ fn main() {
                             converted[0], converted[1], input, converted[2]
                         );
                     }
-                    Err(e) => {
-                        eprintln!("Error converting decimal: {}", e);
+                    Err(error) => {
+                        eprintln!("{}: {}", "Error converting decimal".red(), error);
                         std::process::exit(1);
                     }
                 }
@@ -147,8 +148,8 @@ fn main() {
                             converted[0], converted[1], converted[2], input
                         );
                     }
-                    Err(e) => {
-                        eprintln!("Error converting hexadecimal: {}", e);
+                    Err(error) => {
+                        eprintln!("{}: {}", "Error converting hexadecimal".red(), error);
                         std::process::exit(1);
                     }
                 }
@@ -162,8 +163,8 @@ fn main() {
 
                 match result {
                     Ok(converted) => println!("Base16: {}\nBase64: {}", converted[0], converted[1]),
-                    Err(e) => {
-                        eprintln!("Error encoding: {}", e);
+                    Err(error) => {
+                        eprintln!("{}: {}", "Error encoding".red(), error);
                         std::process::exit(1);
                     }
                 }
@@ -176,20 +177,20 @@ fn main() {
                         println!("Base16: {}\nBase64: {}", converted_base16, converted_base64);
                     }
                     [Err(error), Ok(converted)] => {
-                        eprintln!("Base16 decode error: {}", error);
+                        eprintln!("{} {}", "Base16 decode error:".red(), error);
                         println!("Base64: {}", converted);
                     }
                     [Ok(converted), Err(error)] => {
                         println!("Base16: {}", converted);
-                        eprintln!("Base64 decode error: {}", error);
+                        eprintln!("{}: {}", "Base64 decode error".red(), error);
                     }
                     [Err(error_base16), Err(error_base64)] => {
-                        eprintln!("Base16 decode error: {}", error_base16);
-                        eprintln!("Base64 decode error: {}", error_base64);
+                        eprintln!("{} {}", "Base16 decode error:".red(), error_base16);
+                        eprintln!("{} {}", "Base64 decode error:".red(), error_base64);
                     }
                 }
             }
-            _ => panic!("Invalid base conversion option"),
+            _ => panic!("{}", "Error: Invalid base conversion option".red()),
         },
         Some(("md5", subcommand_md5)) => {
             let result = md5::text::md5_text(subcommand_md5.get_one::<String>("text").unwrap());
@@ -201,7 +202,7 @@ fn main() {
             );
             match result {
                 Ok(result) => println!("ASCII: {}\nUnicode: {}", result[0], result[1]),
-                Err(error) => println!("{}", error),
+                Err(error) => println!("{} {}", "Error:".red(), error),
             }
         }
         Some(("color", subcommand_color)) => {
@@ -210,7 +211,7 @@ fn main() {
             );
             match result {
                 Ok(result) => println!("RGB: {}\nHex: {}", result.0, result.1),
-                Err(error) => println!("{}", error),
+                Err(error) => println!("{} {}", "Error:".red(), error),
             }
         }
         _ => {}
