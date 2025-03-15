@@ -24,9 +24,12 @@ In our daily project development, we frequently encounter situations where we ne
 ---
 
 ## How to Install Wutong
-> [!NOTE]  
-> During the test phase, Wutong does not provide installation methods. If you wish to experience it, please compile it yourself. Upon the release of the official version, Wutong will provide installation methods.
-> Version 0.1.0 we will launch Wutong at HomeBrew
+If you are a MacOS user, you can use:
+```bash
+brew install wutong
+```
+If you are a Windows or Linux user, please wait for the subsequent version.  
+P.S.: Of course, you can compile Wutong yourself.
 
 ---
 

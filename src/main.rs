@@ -9,7 +9,7 @@ use colored::*;
 
 fn main() {
     let matches = Command::new("Wutong")
-        .version("0.1.0-alpha")
+        .version("0.1.0")
         .about("Wutong - A Swiss Army Knife of Developers.🌳")
         .author("Gavin Zheng<gav.zheng@outlook.com>")
         .subcommand(
