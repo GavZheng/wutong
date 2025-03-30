@@ -11,7 +11,7 @@ pub fn which_git() -> Result<String, String> {
     let output = process::Command::new(cmd)
         .arg(arg)
         .output()
-        .map_err(|e| format!("Command execution failed:{}", e))?;
+        .map_err(|e| format!("Command execution failed: {}", e))?;
 
     if !output.status.success() {
         return Err("The Git executable could not be found".to_string());
