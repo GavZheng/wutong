@@ -2,14 +2,22 @@ mod base;
 mod base_conversion;
 mod charcode;
 mod color;
+mod flow;
 mod md5;
 
 use clap::{Arg, ArgGroup, Command};
-use colored::*;
+use colored::Colorize;
+
+#[derive(Debug, Clone, Copy)]
+pub enum BranchType {
+    Feature,
+    Release,
+    Hotfix,
+}
 
 fn main() {
     let matches = Command::new("Wutong")
-        .version("0.1.0")
+        .version("0.2.0")
         .about("Wutong - A Swiss Army Knife of Developers.🌳")
         .author("Gavin Zheng<gav.zheng@outlook.com>")
         .subcommand(
@@ -81,6 +89,40 @@ fn main() {
                     .required(true)
                     .index(1),
             ),
+        )
+        .subcommand(
+            Command::new("flow")
+                .about("Create and merge branches and release versions according to GitFlow.")
+                .arg(
+                    Arg::new("feature")
+                        .short('f')
+                        .long("feature")
+                        .help("Create a new feature branch."),
+                )
+                .arg(
+                    Arg::new("release")
+                        .short('r')
+                        .long("release")
+                        .help("Create a new release branch."),
+                )
+                .arg(
+                    Arg::new("hotfix")
+                        .short('H')
+                        .long("hotfix")
+                        .help("Create a new hotfix branch."),
+                )
+                .arg(
+                    Arg::new("merge")
+                        .short('m')
+                        .long("merge")
+                        .help("Merge branches."),
+                )
+                .group(
+                    ArgGroup::new("branch_type_option")
+                        .args(["feature", "release", "hotfix", "merge"])
+                        .required(true)
+                        .multiple(false),
+                ),
         )
         .get_matches();
 
@@ -212,6 +254,39 @@ fn main() {
             match result {
                 Ok(result) => println!("RGB: {}\nHex: {}", result.0, result.1),
                 Err(error) => println!("{} {}", "Error:".red(), error),
+            }
+        }
+        Some(("flow", subcommand_flow)) => {
+            let subcommands = [
+                ("feature", BranchType::Feature),
+                ("release", BranchType::Release),
+                ("hotfix", BranchType::Hotfix),
+            ];
+
+            if let Some((sub_cmd, branch_type)) = subcommands
+                .iter()
+                .find(|(name, _)| subcommand_flow.contains_id(name))
+                .copied()
+            {
+                let arg = subcommand_flow.get_one::<String>(sub_cmd).unwrap();
+                match flow::branch::branch(branch_type, arg) {
+                    Ok(_) => println!("Done."),
+                    Err(e) => {
+                        eprintln!("{} {}", "Error:".red(), e);
+                        std::process::exit(1);
+                    }
+                }
+            }
+
+            if subcommand_flow.contains_id("merge") {
+                let arg = subcommand_flow.get_one::<String>("merge").unwrap();
+                match flow::merge::merge(arg) {
+                    Ok(_) => println!("Done."),
+                    Err(e) => {
+                        eprintln!("{} {}", "Error:".red(), e);
+                        std::process::exit(1);
+                    }
+                }
             }
         }
         _ => {}

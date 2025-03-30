@@ -24,8 +24,9 @@ In our daily project development, we frequently encounter situations where we ne
 ---
 
 ## How to Install Wutong
-If you are a MacOS user, you can use:
+If you are a macOS user, you can use:
 ```bash
+brew tap GavZheng/wutong
 brew install wutong
 ```
 If you are a Windows or Linux user, please wait for the subsequent version.  
@@ -35,7 +36,7 @@ P.S.: Of course, you can compile Wutong yourself.
 
 ## How to Use Wutong
 You can obtain detailed information by typing `wutong --help` in the command line.  
-The general functions of Wutong are listed below (v0.1.0-beta):
+The general functions of Wutong are listed below (v0.2.0):
 
 | Function | Description                                                  |
 |----------|--------------------------------------------------------------|
@@ -44,6 +45,7 @@ The general functions of Wutong are listed below (v0.1.0-beta):
 | color    | Convert between RGB and Hex colors                           |
 | md5      | Hash input strings using MD5                                 |
 | charcode | Convert string encodings                                     |
+| flow     | Manage git repositories according to the Gitflow workflow    |
 
 ---
 
@@ -68,6 +70,22 @@ We sincerely thank the following individuals who have made outstanding contribut
 <a href="https://github.com/WutongDev/wutong/contributors">
   <img src="https://contrib.rocks/image?repo=WutongDev/wutong" alt="Contributors"/>
 </a>
+
+---
+
+FAQ
+
+Q1: Why is it named "Wutong"?
+A: The name originates from developer Gavin's friend, Silent, whose favorite tree species is the Chinese parasol tree (梧桐). "Wutong" is the Pinyin transliteration of the tree's Chinese name.
+
+Q2: Why was Rust chosen as the development language?
+A: Rust was selected as the optimal technical choice after evaluating languages like Python, C++, and C, due to its cross-platform capabilities, memory safety features, and high-performance execution that align with the project's requirements.
+
+Q3: Why is only macOS currently supported?
+A: Current development prioritizes core feature refinement and rapid iteration. Windows and Linux versions are on the roadmap, with multi-platform adaptation scheduled to commence once core functionalities are stabilized.
+
+Q4: Where can I learn more about Gavin?
+A: Visit [Gavin's GitHub profile](https://github.com/GavZheng) to explore his technical contributions and open-source projects.
 
 ---
 
