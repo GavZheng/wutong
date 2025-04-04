@@ -17,7 +17,7 @@ pub fn base16_encode(input: &str) -> Result<String, FromUtf8Error> {
 pub fn base64_encode(input: &str) -> Result<String, FromUtf8Error> {
     const BASE64_CHARS: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     let bytes = input.as_bytes();
-    let mut result = Vec::with_capacity(((bytes.len() + 2) / 3) * 4);
+    let mut result = Vec::with_capacity(bytes.len().div_ceil(3) * 4);
     let mut buffer = [0u8; 3];
     let mut buffer_index = 0;
 
