@@ -1,14 +1,15 @@
 <h1 style="text-align: center;">梧桐 - 开发者的瑞士军刀</h1>
 
+[![Author: Gavin Zheng](https://img.shields.io/badge/Author-Gavin_Zheng-f2f28d)](https://github.com/GavZheng)
+![Language: Rust](https://img.shields.io/badge/Language-Rust-orange)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![Github Stars](https://img.shields.io/github/stars/WutongDev/wutong?style=flat&color=red)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT_zh.md)
+
 [English](../../README.md) | [简体中文](README_zh.md)
 
 梧桐是一个由**Rust**编写的跨平台工具箱，用于帮助开发者快速完成各种任务。
-
-![LICENSE](https://img.shields.io/badge/License-MIT-blue)
-![Language](https://img.shields.io/badge/Language-Rust-orange)
-![Version](https://img.shields.io/badge/Version-v0.1.0%20alpha-green)
-![Github Stars](https://img.shields.io/github/stars/WutongDev/wutong?style=flat&color=red)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT_zh.md)
 
 ---
 
@@ -37,8 +38,9 @@
 brew tap GavZheng/wutong
 brew install wutong
 ```
-如果您是 Windows 或 Linux 用户，请等待后续版本。 
-P.S.：当然可以自己编译梧桐。
+PS：仅支持 macOS 13 或更高版本。  
+如果您是 Windows 或 Linux 用户，请等待后续版本。   
+*当然，您可以自己编译梧桐。*
 ---
 
 ## 如何使用梧桐
