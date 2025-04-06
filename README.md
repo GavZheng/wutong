@@ -1,5 +1,12 @@
 <h1 style="text-align: center;">Wutong - The Swiss Army Knife for Developers</h1>
 
+[![Author: Gavin Zheng](https://img.shields.io/badge/Author-Gavin_Zheng-f2f28d)](https://github.com/GavZheng)
+![Language: Rust](https://img.shields.io/badge/Language-Rust-orange)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![Github Stars](https://img.shields.io/github/stars/WutongDev/wutong?style=flat&color=red)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT_zh.md)
+
 [English](./README.md) | [简体中文](./docs/zh/README_zh.md)
 
 ---
@@ -29,8 +36,9 @@ If you are a macOS user, you can use:
 brew tap GavZheng/wutong
 brew install wutong
 ```
+PS: Only macOS 13 or later is supported.  
 If you are a Windows or Linux user, please wait for the subsequent version.  
-P.S.: Of course, you can compile Wutong yourself.
+*Of course, you can compile Wutong yourself.*
 
 ---
 
