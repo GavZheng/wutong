@@ -1,14 +1,15 @@
 <h1 style="text-align: center;">梧桐 - 开发者的瑞士军刀</h1>
 
+[![Author: Gavin Zheng](https://img.shields.io/badge/Author-Gavin_Zheng-f2f28d)](https://github.com/GavZheng)
+![Language: Rust](https://img.shields.io/badge/Language-Rust-orange)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![Github Stars](https://img.shields.io/github/stars/WutongDev/wutong?style=flat&color=red)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT_zh.md)
+
 [English](../../README.md) | [简体中文](README_zh.md)
 
 梧桐是一个由**Rust**编写的跨平台工具箱，用于帮助开发者快速完成各种任务。
-
-![LICENSE](https://img.shields.io/badge/License-MIT-blue)
-![Language](https://img.shields.io/badge/Language-Rust-orange)
-![Version](https://img.shields.io/badge/Version-v0.1.0%20alpha-green)
-![Github Stars](https://img.shields.io/github/stars/WutongDev/wutong?style=flat&color=red)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT_zh.md)
 
 ---
 
@@ -32,23 +33,28 @@
 ---
 
 ## 如何安装梧桐
-> [!NOTE]  
-> 梧桐在测试版不提供安装方式，如希望体验请自行编译。在正式版发布后，梧桐将会提供安装方式。
-
+如果您是 macOS 用户，则可以使用：
+```bash
+brew tap GavZheng/wutong
+brew install wutong
+```
+PS：仅支持 macOS 13 或更高版本。  
+如果您是 Windows 或 Linux 用户，请等待后续版本。   
+*当然，您可以自己编译梧桐。*
 ---
 
 ## 如何使用梧桐
 你可以通过在命令行键入`wutong --help`来获取详细信息。  
-梧桐的大致功能如下表（v0.1.0-alpha）
+梧桐的大致功能如下表（v0.2.0）
 
-| 功能    | 描述                                          |
-|-------|---------------------------------------------|
-| base  | 将输入的字符串进行base32、base64编码编码                  |
-| bc    | 将输入的数字转换为二、八、十、十六进制或存储空间大小单位（KB, MB, GB等）表示 |
-| color | RGB和Hex颜色的相互转换                              |
-| md5   | 将输入的字符串进行md5哈希                              |
-| diff  | 比较文本差异                                      |
-| char  | 字符串编码转换                                     |
+| 功能       | 描述                         |
+|----------|----------------------------|
+| base     | 将输入的字符串进行base32、base64编码编码 |
+| bc       | 将输入的数字转换为二、八、十、十六进制        |
+| color    | RGB和Hex颜色的相互转换             |
+| md5      | 将输入的字符串进行md5哈希             |
+| charcode | 字符串编码转换                    |
+| flow     | 根据 Gitflow 工作流程管理 git 存储库  |
 
 ---
 
@@ -71,6 +77,21 @@
 <a href="https://github.com/WutongDev/wutong/contributors">
   <img src="https://contrib.rocks/image?repo=WutongDev/wutong" alt="Contributors"/>
 </a>
+
+---
+
+## FAQ
+Q1: 为什么叫梧桐？  
+A：这个名字来自我（Gavin）的一个朋友（Silent），梧桐是她最喜欢的树。“Wutong”是梧桐的拼音。
+
+Q2: 为何选择Rust作为开发语言？  
+A: Rust凭借其卓越的跨平台能力、内存安全特性和高效执行性能，在综合评估Python/C++/C等候选语言后，被确认为满足项目需求的最佳技术选型。
+
+Q3: 当前为何仅支持macOS平台？
+A: 现阶段开发重心聚焦于核心功能完善与快速迭代。Windows/Linux版本已列入roadmap，将在主体功能稳定后启动多平台适配工作。
+
+Q4：更多关于Gavin？  
+A：你可以访问[Gavin的Github主页](https://github.com/GavZheng)。
 
 ---
 

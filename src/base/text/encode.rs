@@ -1,4 +1,6 @@
-pub fn base16_encode(input: &str) -> String {
+use std::string::FromUtf8Error;
+
+pub fn base16_encode(input: &str) -> Result<String, FromUtf8Error> {
     const BASE16_CHARS: &[u8] = b"0123456789abcdef";
 
     let bytes = input.as_bytes();
@@ -9,13 +11,13 @@ pub fn base16_encode(input: &str) -> String {
         result.push(BASE16_CHARS[(byte & 0x0F) as usize]);
     }
 
-    String::from_utf8(result).unwrap()
+    String::from_utf8(result)
 }
 
-pub fn base64_encode(input: &str) -> String {
+pub fn base64_encode(input: &str) -> Result<String, FromUtf8Error> {
     const BASE64_CHARS: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     let bytes = input.as_bytes();
-    let mut result = Vec::with_capacity(((bytes.len() + 2) / 3) * 4);
+    let mut result = Vec::with_capacity(bytes.len().div_ceil(3) * 4);
     let mut buffer = [0u8; 3];
     let mut buffer_index = 0;
 
@@ -52,11 +54,11 @@ pub fn base64_encode(input: &str) -> String {
         }
     }
 
-    String::from_utf8_lossy(&result).to_string()
+    String::from_utf8(result)
 }
 
-pub fn text_encode(input: &str) -> [String; 2] {
-    let base16 = base16_encode(input);
-    let base64 = base64_encode(input);
-    [base16, base64]
+pub fn text_encode(input: &str) -> Result<[String; 2], FromUtf8Error> {
+    let base16 = base16_encode(input)?;
+    let base64 = base64_encode(input)?;
+    Ok([base16, base64])
 }

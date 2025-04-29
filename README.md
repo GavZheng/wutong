@@ -1,5 +1,12 @@
 <h1 style="text-align: center;">Wutong - The Swiss Army Knife for Developers</h1>
 
+[![Author: Gavin Zheng](https://img.shields.io/badge/Author-Gavin_Zheng-f2f28d)](https://github.com/GavZheng)
+![Language: Rust](https://img.shields.io/badge/Language-Rust-orange)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![Github Stars](https://img.shields.io/github/stars/WutongDev/wutong?style=flat&color=red)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT_zh.md)
+
 [English](./README.md) | [简体中文](./docs/zh/README_zh.md)
 
 ---
@@ -24,23 +31,29 @@ In our daily project development, we frequently encounter situations where we ne
 ---
 
 ## How to Install Wutong
-> [!NOTE]  
-> During the beta phase, Wutong does not provide installation methods. If you wish to experience it, please compile it yourself. Upon the release of the official version, Wutong will provide installation methods.
+If you are a macOS user, you can use:
+```bash
+brew tap GavZheng/wutong
+brew install wutong
+```
+PS: Only macOS 13 or later is supported.  
+If you are a Windows or Linux user, please wait for the subsequent version.  
+*Of course, you can compile Wutong yourself.*
 
 ---
 
 ## How to Use Wutong
 You can obtain detailed information by typing `wutong --help` in the command line.  
-The general functions of Wutong are listed below (v0.1.0-alpha):
+The general functions of Wutong are listed below (v0.2.0):
 
-| Function | Description                                                                                            |
-|----------|--------------------------------------------------------------------------------------------------------|
-| base     | Encode input strings in base32 or base64                                                               |
-| bc       | Convert input numbers to binary, octal, decimal, hexadecimal, or storage size units (KB, MB, GB, etc.) |
-| color    | Convert between RGB and Hex colors                                                                     |
-| md5      | Hash input strings using MD5                                                                           |
-| diff     | Compare text differences                                                                               |
-| char     | Convert string encodings                                                                               |
+| Function | Description                                                  |
+|----------|--------------------------------------------------------------|
+| base     | Encode input strings in base32 or base64                     |
+| bc       | Convert input numbers to binary, octal, decimal, hexadecimal |
+| color    | Convert between RGB and Hex colors                           |
+| md5      | Hash input strings using MD5                                 |
+| charcode | Convert string encodings                                     |
+| flow     | Manage git repositories according to the Gitflow workflow    |
 
 ---
 
@@ -65,6 +78,22 @@ We sincerely thank the following individuals who have made outstanding contribut
 <a href="https://github.com/WutongDev/wutong/contributors">
   <img src="https://contrib.rocks/image?repo=WutongDev/wutong" alt="Contributors"/>
 </a>
+
+---
+
+FAQ
+
+Q1: Why is it named "Wutong"?
+A: The name originates from developer Gavin's friend, Silent, whose favorite tree species is the Chinese parasol tree (梧桐). "Wutong" is the Pinyin transliteration of the tree's Chinese name.
+
+Q2: Why was Rust chosen as the development language?
+A: Rust was selected as the optimal technical choice after evaluating languages like Python, C++, and C, due to its cross-platform capabilities, memory safety features, and high-performance execution that align with the project's requirements.
+
+Q3: Why is only macOS currently supported?
+A: Current development prioritizes core feature refinement and rapid iteration. Windows and Linux versions are on the roadmap, with multi-platform adaptation scheduled to commence once core functionalities are stabilized.
+
+Q4: Where can I learn more about Gavin?
+A: Visit [Gavin's GitHub profile](https://github.com/GavZheng) to explore his technical contributions and open-source projects.
 
 ---
 
