@@ -28,6 +28,8 @@ In our daily project development, we frequently encounter situations where we ne
 
 **Wutong** was created to address this issue. It is a command-line tool that allows us to complete various mundane tasks that we may encounter in programming directly within the terminal, thereby significantly enhancing our coding efficiency.
 
+If you wish to learn more about the motivation and purpose of the Sycamore, you can read [Wutong: Developer's command line efficiency application](Wutong%3A%20Developer%27s%20command%20line%20efficiency%20application.md)
+
 ---
 
 ## How to Install Wutong
