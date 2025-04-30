@@ -5,8 +5,15 @@ mod color;
 mod flow;
 mod md5;
 
-use clap::{Arg, ArgGroup, Command};
+use std::io;
+use clap::{Arg, ArgAction, ArgGroup, Command};
 use colored::Colorize;
+
+#[derive(Debug)]
+pub enum Md5Error {
+    FileNotFound,
+    IoError(io::Error),
+}
 
 #[derive(Debug, Clone, Copy)]
 pub enum BranchType {
@@ -65,12 +72,29 @@ fn main() {
                 ),
         )
         .subcommand(
-            Command::new("md5").about("MD5 hashing.").arg(
-                Arg::new("text")
-                    .short('t')
-                    .long("text")
-                    .help("Input text to be hashed."),
-            ),
+            Command::new("md5")
+                .about("MD5 hashing")
+                .arg(
+                    Arg::new("text")
+                        .value_name("TEXT")
+                        .default_value("")
+                        .action(ArgAction::Set)
+                        .help("Input text (default mode)")
+                        .index(1),
+                )
+                .arg(
+                    Arg::new("file")
+                        .short('f')
+                        .long("file")
+                        .value_name("PATH")
+                        .action(ArgAction::Set)
+                        .help("Input file path"),
+                )
+                .group(
+                    ArgGroup::new("input")
+                        .args(["text", "file"])
+                        .multiple(false),
+                ),
         )
         .subcommand(
             Command::new("charcode")
@@ -235,8 +259,17 @@ fn main() {
             _ => panic!("{}", "Error: Invalid base conversion option".red()),
         },
         Some(("md5", subcommand_md5)) => {
-            let result = md5::text::md5_text(subcommand_md5.get_one::<String>("text").unwrap());
-            println!("{}", result);
+            if let Some(_file_path) = subcommand_md5.get_one::<String>("file") {
+                let result =
+                    md5::file::md5_file(subcommand_md5.get_one::<String>("file").unwrap().as_ref());
+                match result {
+                    Ok(result) => println!("{}", result),
+                    Err(error) => println!("{} {:?}", "Error:".red(), error),
+                }
+            } else {
+                let result = md5::text::md5_text(subcommand_md5.get_one::<String>("text").unwrap());
+                println!("{}", result)
+            }
         }
         Some(("charcode", subcommand_charcode)) => {
             let result = charcode::ascii_unicode::ascii_unicode(
