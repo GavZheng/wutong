@@ -5,7 +5,7 @@
 ![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 ![Github Stars](https://img.shields.io/github/stars/WutongDev/wutong?style=flat&color=red)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT_zh.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 [English](./README.md) | [简体中文](./docs/zh/README_zh.md)
 
@@ -44,14 +44,14 @@ If you are a Windows or Linux user, please wait for the subsequent version.
 
 ## How to Use Wutong
 You can obtain detailed information by typing `wutong --help` in the command line.  
-The general functions of Wutong are listed below (v0.2.0):
+The general functions of Wutong are listed below (v0.2.1):
 
 | Function | Description                                                  |
 |----------|--------------------------------------------------------------|
 | base     | Encode input strings in base32 or base64                     |
 | bc       | Convert input numbers to binary, octal, decimal, hexadecimal |
 | color    | Convert between RGB and Hex colors                           |
-| md5      | Hash input strings using MD5                                 |
+| md5      | Hash input strings and files using MD5                       |
 | charcode | Convert string encodings                                     |
 | flow     | Manage git repositories according to the Gitflow workflow    |
 
