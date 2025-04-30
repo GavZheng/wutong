@@ -14,7 +14,9 @@ readme = "README.md"
 [dependencies]
 clap = "4.5.34"
 colored = "3.0.0"
+digest = "0.10.7"
 md5 = "0.7.0"
+pbr = "1.1.1"
 
 [dev-dependencies]
 tempfile = "3.19.1"
