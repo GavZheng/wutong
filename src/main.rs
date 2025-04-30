@@ -5,9 +5,9 @@ mod color;
 mod flow;
 mod md5;
 
-use std::io;
 use clap::{Arg, ArgAction, ArgGroup, Command};
 use colored::Colorize;
+use std::io;
 
 #[derive(Debug)]
 pub enum Md5Error {

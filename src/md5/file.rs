@@ -1,3 +1,4 @@
+use crate::Md5Error;
 use md5::Context;
 use pbr::ProgressBar;
 use std::{
@@ -5,7 +6,6 @@ use std::{
     io::{self, Read},
     path::Path,
 };
-use crate::Md5Error;
 
 impl From<io::Error> for Md5Error {
     fn from(err: io::Error) -> Self {
@@ -34,14 +34,14 @@ impl Md5Calculator {
             progress,
         }
     }
-    
+
     pub fn update(&mut self, data: &[u8]) {
         self.context.consume(data);
         if let Some(pb) = &mut self.progress {
             pb.add(data.len() as u64);
         }
     }
-    
+
     pub fn finalize(self) -> String {
         format!("\n{:x}", self.context.compute())
     }
